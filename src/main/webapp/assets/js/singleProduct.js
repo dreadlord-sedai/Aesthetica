@@ -1,4 +1,4 @@
-const API_ROOT = '/aesthetica';
+window.API_ROOT = window.API_ROOT || '/aesthetica';
 let params = new URLSearchParams(window.location.search);
 window.addEventListener("load",async ()=>{
     const buyNowButton = document.getElementById("buyNowButton");

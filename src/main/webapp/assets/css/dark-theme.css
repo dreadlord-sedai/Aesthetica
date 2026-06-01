@@ -129,12 +129,8 @@ hr,
     border-color: var(--border-soft) !important;
 }
 
-.brand-logo {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
-}
-
 .brand-logo::after {
-    color: #dfffea !important;
+    color: #b39ddb !important;
 }
 
 .bg-white,

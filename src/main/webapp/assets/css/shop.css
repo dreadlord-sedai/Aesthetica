@@ -293,6 +293,30 @@ input[type="checkbox"] {
     border-color: #7e57c2 !important;
 }
 
+/* ─── Product Card ─── */
+.product-card-hover {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.product-card-hover .card-body {
+    background: transparent !important;
+}
+
+.product-card-hover .card-title {
+    text-transform: capitalize;
+}
+
+.product-card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
 /* ─── Filter Drawer Overlay ─── */
 .filter-drawer-overlay {
     position: fixed;

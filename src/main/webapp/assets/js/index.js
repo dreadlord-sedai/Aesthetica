@@ -78,24 +78,19 @@ async function loadTeaGallery() {
       const shortDesc =
         words.slice(0, 15).join(" ") + (words.length > 30 ? "..." : "");
       const productId = item.productId || item.id;
-      const viewAction = productId
-        ? `onclick="redirectToSingleProductView(${productId})"`
-        : `onclick="window.location.href='shop.html'"`;
-      // On gallery cards we should go to the product detail page first (not add to cart)
-      const buyNowAction = productId
-        ? `onclick="redirectToSingleProductView(${productId})"`
-        : `onclick="window.location.href='shop.html'"`;
+      const productUrl = productId
+        ? `javascript:redirectToSingleProductView(${productId})`
+        : `javascript:window.location.href='shop.html'`;
 
       const cardHtml = `
                 <div class="tea-card-item">
-                    <div class="card shadow-sm">
-                        <img src="${item.image}" alt="${item.name}">
+                    <div class="card shadow-sm" onclick="${productUrl}" style="cursor:pointer">
+                        <img src="${item.image}" alt="${item.name}" onclick="${productUrl}" style="cursor:pointer">
                         <div class="card-body text-center">
                             <h5 class="text-start">${item.name}</h5>
                             <h5 class="text-start" style="color:#5e35b1">${item.price}/-</h5>
                             <p class="small text-muted">${shortDesc}</p>
-                            <button class="btn btn-outline-dark btn-sm me-2" ${viewAction}>View Product</button>
-                            <button class="btn btn-dark btn-sm" ${buyNowAction}>Buy Now</button>
+                            <button class="btn btn-dark btn-sm w-100" onclick="event.stopPropagation();${productUrl}">Buy Now</button>
                         </div>
                     </div>
                 </div>`;

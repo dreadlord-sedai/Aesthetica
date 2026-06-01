@@ -128,10 +128,11 @@
 .sidebar-tagline {
   display: block;
   color: var(--text-muted);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-top: 0.25rem;
+  opacity: 0.4;
 }
 
 /* ─── Sidebar Navigation ─── */

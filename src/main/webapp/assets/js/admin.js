@@ -1,4 +1,4 @@
-const API_ROOT = '/aesthetica';
+window.API_ROOT = window.API_ROOT || '/aesthetica';
 let categoryDirectory = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -86,7 +86,7 @@ function clearImage(input, div, span, icon) {
 }
 
 async function populateCategories() {
-  const response = await fetch("../api/data/categories");
+  const response = await fetch(API_ROOT + "/api/data/categories");
 
   if (response.ok) {
     const data = await response.json();
@@ -135,7 +135,7 @@ async function addCategory() {
   formData.append("image", imageFile);
 
   try {
-    const optionsResponse = await fetch("../api/data/categories", {
+    const optionsResponse = await fetch(API_ROOT + "/api/data/categories", {
       method: "OPTIONS",
     });
     const allowHeader = optionsResponse.headers.get("Allow") || "";
@@ -162,7 +162,7 @@ async function addCategory() {
   });
 
   try {
-    const response = await fetch("../api/data/categories", {
+    const response = await fetch(API_ROOT + "/api/data/categories", {
       method: "POST",
       body: formData,
     });
@@ -236,7 +236,7 @@ async function addProduct() {
       }
     }
 
-    const productResponse = await fetch("../api/product/addProduct", {
+    const productResponse = await fetch(API_ROOT + "/api/product/addProduct", {
       method: "POST",
       body: formData,
     });
@@ -268,7 +268,7 @@ async function loadProductListings() {
     '<div class="text-muted">Loading listings...</div>';
 
   try {
-    const response = await fetch("../api/product/product-data");
+    const response = await fetch(API_ROOT + "/api/product/product-data");
     if (!response.ok) {
       listingContainer.innerHTML =
         '<div class="text-danger">Failed to load product listings.</div>';

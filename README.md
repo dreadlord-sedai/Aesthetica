@@ -1,5 +1,22 @@
 # Aesthetica - Modern E-Commerce Platform
 
+## 🌟 Visual Preview
+
+<div align="center">
+  <img src="screenshots/Screenshot%20From%202026-06-01%2021-10-15.png" alt="Homepage Showcase" width="100%" style="border-radius: 8px; margin-bottom: 12px;" />
+  <br/>
+  <img src="screenshots/Screenshot%20From%202026-06-01%2021-10-20.png" alt="Product Grid" width="49%" style="border-radius: 8px; display: inline-block;" />
+  <img src="screenshots/Screenshot%20From%202026-06-01%2021-10-24.png" alt="Gallery Slider" width="49%" style="border-radius: 8px; display: inline-block;" />
+  <br/>
+  <img src="screenshots/Screenshot%20From%202026-06-01%2021-10-30.png" alt="Categories Overview" width="49%" style="border-radius: 8px; display: inline-block;" />
+  <img src="screenshots/Screenshot%20From%202026-06-01%2021-10-34.png" alt="Authentication" width="49%" style="border-radius: 8px; display: inline-block;" />
+  <br/>
+  <img src="screenshots/Screenshot%20From%202026-06-01%2021-10-45.png" alt="Admin Dashboard" width="49%" style="border-radius: 8px; display: inline-block;" />
+  <img src="screenshots/Screenshot%20From%202026-06-01%2021-10-58.png" alt="Checkout Flow" width="49%" style="border-radius: 8px; display: inline-block;" />
+</div>
+
+<br/>
+
 A full-stack Java e-commerce application built with Hibernate ORM, Jersey REST API, and MySQL database. Aesthetica provides a complete shopping experience with product browsing, cart management, user authentication, and PayHere payment gateway integration.
 
 ## 🎯 Quick Overview

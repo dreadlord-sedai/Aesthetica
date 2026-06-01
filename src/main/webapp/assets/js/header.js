@@ -1,4 +1,4 @@
-const API_ROOT = '/aesthetica';
+window.API_ROOT = window.API_ROOT || '/aesthetica';
 
 async function signOut() {
   Notiflix.Confirm.show(

@@ -12,88 +12,35 @@
     />
     <link href="assets/css/dark-theme.css" rel="stylesheet" />
   </head>
-  <body style="height: 100vh">
-    <div class="container-fluid col-12 h-100" style="height: 100%">
-      <div class="row h-100" style="height: 100%">
-        <div class="col-4 bg-artwork shadow">
-          <div class="brand"></div>
-          <p class="text-center col-10 offset-1 brand-tagline">
-            Step into Aesthetica and discover curated visual packs, moodboards,
-            and premium aesthetic photography tailored for creators.
-          </p>
-        </div>
-        <div class="col-8 d-flex" style="height: 100%">
-          <div
-            class="col-12 h-100 d-flex justify-content-center align-items-center flex-column"
-          >
-            <div class="col-6">
-              <h1 class="mb-4">Log In</h1>
-              <div class="form-floating mt-3">
-                <input
-                  class="form-control"
-                  id="email"
-                  placeholder="Email"
-                  type="text"
-                />
-                <label for="email">Email</label>
-              </div>
+  <body class="sign-in-page">
+    <div class="sign-in-wrapper">
+      <div class="sign-in-card">
+        <div class="brand-header">AESTHETICA</div>
+        <h1 class="sign-in-title">Log In</h1>
 
-              <div class="form-floating position-relative mt-3">
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="confirm_password"
-                  class="form-control"
-                />
-                <label for="password" class="form-label">password</label>
-                <i
-                  class="bi bi-eye-slash password-toggle-icon"
-                  onclick="togglePassword('password', this)"
-                ></i>
-              </div>
-
-              <div class="mt-5 d-flex flex-column">
-                <button
-                  class="sign-in-button btn"
-                  style="
-                    background-color: #5e35b1;
-                    color: white;
-                    font-size: medium;
-                  "
-                  onclick="sign_in()"
-                >
-                  Sign In
-                </button>
-              </div>
-              <span class="mt-3 d-flex flex-row justify-content-between">
-                <a
-                  href="#"
-                  style="text-decoration-color: #5e35b1; color: #5e35b1"
-                  >Forgot Password ?</a
-                >
-                <a
-                  href="sign_up.html"
-                  style="text-decoration-color: #5e35b1; color: #5e35b1"
-                  >Create Account</a
-                >
-              </span>
-              <div
-                class="mt-5 d-flex align-items-center justify-content-between px-5"
-              >
-                <a class="text-decoration-none text-dark me-4" href="#"
-                  >Privacy Policy</a
-                >
-                <a class="text-decoration-none text-dark me-4" href="#"
-                  >User Agreement</a
-                >
-                <a class="text-decoration-none text-dark" href="#"
-                  >Copy writes</a
-                >
-              </div>
-            </div>
-          </div>
+        <div class="form-floating mt-4">
+          <input class="form-control" id="email" placeholder="Email" type="text" />
+          <label for="email">Email</label>
         </div>
-        <!--        <div class="col-4 bg-artwork h-100" style="height: 100%"></div>-->
+
+        <div class="form-floating position-relative mt-3">
+          <input type="password" id="password" placeholder="confirm_password" class="form-control" />
+          <label for="password" class="form-label">Password</label>
+          <i class="bi bi-eye-slash password-toggle-icon" onclick="togglePassword('password', this)"></i>
+        </div>
+
+        <button class="btn sign-in-btn w-100 mt-4" onclick="sign_in()" style="background-color:#00f59b!important;color:#0b0f19!important;font-weight:700!important">Sign In</button>
+
+        <div class="sign-in-links">
+          <a href="#">Forgot Password ?</a>
+          <a href="sign_up.html">Create Account</a>
+        </div>
+      </div>
+
+      <div class="sign-in-footer">
+        <a href="#">Privacy Policy</a>
+        <a href="#">User Agreement</a>
+        <a href="#">Copyright &copy; 2026 Aesthetica</a>
       </div>
     </div>
 
