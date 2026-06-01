@@ -34,7 +34,7 @@ public class Product extends BaseEntity {
     private Double height;
     // --- SHIPPING & DIMENSIONS END ---
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id")
     private Seller seller;
 

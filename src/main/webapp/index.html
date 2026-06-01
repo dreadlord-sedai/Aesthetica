@@ -23,10 +23,7 @@
       <a class="navbar-brand brand-logo" href="index.html"></a>
       <div
         class="kart-icon position-relative"
-        data-bs-toggle="offcanvas"
-        href="#cart"
-        role="button"
-        aria-controls="cart"
+        onclick="window.location.href='cart.html'"
         style="cursor: pointer"
       >
         <span
@@ -47,13 +44,14 @@
 
       <nav class="sidebar-nav">
         <a class="sidebar-link" href="shop.html"><i class="bi bi-shop"></i>Shop</a>
+        <a class="sidebar-link" href="cart.html"><i class="bi bi-cart3"></i>Cart</a>
         <a class="sidebar-link" href="all_categories.html"><i class="bi bi-grid"></i>All Categories</a>
       </nav>
 
       <hr class="sidebar-divider" />
 
       <div class="sidebar-utilities">
-        <div class="sidebar-cart" data-bs-toggle="offcanvas" href="#cart" role="button" aria-controls="cart">
+        <div class="sidebar-cart" onclick="window.location.href='cart.html'" style="cursor: pointer">
           <div class="kart-icon position-relative">
             <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
@@ -256,53 +254,7 @@
         </section>
       </main>
 
-      <!--Off Canvasser-->
-      <div
-        class="offcanvas offcanvas-end rounded-start-4"
-        tabindex="-1"
-        id="cart"
-        aria-labelledby="cart-label"
-        style="width: 500px"
-      >
-        <div
-          class="offcanvas-header border border-top-0 border-end-0 border-start-0 mt-3"
-        >
-          <h5 class="offcanvas-title fw-bold" id="cart-label">Cart</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
 
-        <div class="offcanvas-body" id="cart-content"></div>
-
-        <div class="offcanvas-footer p-3 border-top bg-light">
-          <div class="d-flex justify-content-between mb-3">
-            <span class="h5">Subtotal</span>
-            <span class="h5 fw-bold" id="order-total-amount"></span>
-          </div>
-          <div class="d-flex justify-content-between mb-3">
-            <span class="h5">Total items</span>
-            <span class="h5 fw-bold" id="order-total-quantity"></span>
-          </div>
-          <div class="d-grid gap-2">
-            <a href="checkout.html" class="w-100">
-              <button
-                class="btn btn-lg w-100"
-                style="background-color: #5e35b1; color: white"
-              >
-                Checkout
-              </button>
-            </a>
-            <button class="btn btn-outline-dark" data-bs-dismiss="offcanvas">
-              Continue Shopping
-            </button>
-          </div>
-        </div>
-      </div>
-      <!--Off Canvasser-->
 
       <!--Footer Start-->
       <footer class="site-footer section-space">

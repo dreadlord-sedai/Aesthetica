@@ -3,6 +3,7 @@ package com.aesthetica.service;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.aesthetica.dto.GalleryProductDTO;
 import com.aesthetica.dto.ProductDTO;
 import com.aesthetica.dto.StockDTO;
 import com.aesthetica.entity.*;
@@ -106,46 +107,46 @@ public class ContentService {
     public String loadTeaGallery() {
         JsonArray teaArray = new JsonArray();
         try (Session hibernateSession = HibernateUtil.getSessionFactory().openSession()) {
-            // Prefer newer products (id >= 4), but fall back to all products if needed.
-            String hql = "SELECT DISTINCT p FROM Product p " +
-                    "LEFT JOIN FETCH p.images " +
-                    "LEFT JOIN FETCH p.stocks " +
-                    "WHERE p.id >= :minId AND EXISTS (SELECT 1 FROM Stock s WHERE s.product = p AND s.quantity > 0) " +
+            String hql = "SELECT NEW com.aesthetica.dto.GalleryProductDTO(" +
+                    "p.id, p.title, p.description, " +
+                    "COALESCE(MIN(CASE WHEN s.quantity > 0 THEN s.price END), 0), " +
+                    "COALESCE(MIN(CAST(img AS string)), 'images/placeholder.jpg')) " +
+                    "FROM Product p " +
+                    "LEFT JOIN p.stocks s " +
+                    "LEFT JOIN p.images img " +
+                    "WHERE p.id >= :minId " +
+                    "GROUP BY p.id, p.title, p.description " +
                     "ORDER BY p.id DESC";
 
-            List<Product> products = hibernateSession.createQuery(hql, Product.class)
+            List<GalleryProductDTO> dtos = hibernateSession.createQuery(hql, GalleryProductDTO.class)
                     .setParameter("minId", 4)
                     .setMaxResults(6)
                     .list();
 
-            if (products.isEmpty()) {
-                String fallbackHql = "SELECT DISTINCT p FROM Product p " +
-                        "LEFT JOIN FETCH p.images " +
-                        "LEFT JOIN FETCH p.stocks " +
-                        "WHERE EXISTS (SELECT 1 FROM Stock s WHERE s.product = p AND s.quantity > 0) " +
+            if (dtos.isEmpty()) {
+                String fallbackHql = "SELECT NEW com.aesthetica.dto.GalleryProductDTO(" +
+                        "p.id, p.title, p.description, " +
+                        "COALESCE(MIN(CASE WHEN s.quantity > 0 THEN s.price END), 0), " +
+                        "COALESCE(MIN(CAST(img AS string)), 'images/placeholder.jpg')) " +
+                        "FROM Product p " +
+                        "LEFT JOIN p.stocks s " +
+                        "LEFT JOIN p.images img " +
+                        "GROUP BY p.id, p.title, p.description " +
                         "ORDER BY p.id DESC";
-                products = hibernateSession.createQuery(fallbackHql, Product.class)
+                dtos = hibernateSession.createQuery(fallbackHql, GalleryProductDTO.class)
                         .setMaxResults(6)
                         .list();
             }
 
-            for (Product p : products) {
+            for (GalleryProductDTO dto : dtos) {
                 JsonObject productJson = new JsonObject();
-                productJson.addProperty("id", p.getId());
-                productJson.addProperty("productId", p.getId());
-                productJson.addProperty("name", p.getTitle());
-                productJson.addProperty("title", p.getTitle());
-                productJson.addProperty("description", p.getDescription());
-                Stock stock = p.getStocks().stream().findFirst().orElse(null);
-                productJson.addProperty("price", stock != null ? stock.getPrice() : 0.0);
-
-                // Get the first image URL (or a placeholder if empty)
-                String imageUrl = "images/placeholder.jpg";
-                if (p.getImages() != null && !p.getImages().isEmpty()) {
-                    imageUrl = p.getImages().get(0);
-                }
-                productJson.addProperty("image", imageUrl);
-
+                productJson.addProperty("id", dto.getProductId());
+                productJson.addProperty("productId", dto.getProductId());
+                productJson.addProperty("name", dto.getTitle());
+                productJson.addProperty("title", dto.getTitle());
+                productJson.addProperty("description", dto.getDescription());
+                productJson.addProperty("price", dto.getPrice());
+                productJson.addProperty("image", dto.getImage());
                 teaArray.add(productJson);
             }
         } catch (Exception e) {
