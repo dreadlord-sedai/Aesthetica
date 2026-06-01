@@ -18,6 +18,7 @@ public class UserDTO implements Serializable {
     private String sinceAt;
     private String newPassword;
     private String confirmPassword;
+    private boolean isSeller;
 
     public UserDTO() {
     }
@@ -155,5 +156,17 @@ public class UserDTO implements Serializable {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public boolean getIsSeller() {
+        return isSeller;
+    }
+
+    public void setIsSeller(boolean isSeller) {
+        this.isSeller = isSeller;
+    }
+
+    public boolean isSeller() {
+        return isSeller;
     }
 }

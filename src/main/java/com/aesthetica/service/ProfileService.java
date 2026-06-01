@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.aesthetica.dto.UserDTO;
 import com.aesthetica.entity.Address;
 import com.aesthetica.entity.City;
+import com.aesthetica.entity.Seller;
 import com.aesthetica.entity.User;
 import com.aesthetica.util.AppUtil;
 import com.aesthetica.util.HibernateUtil;
@@ -102,6 +103,11 @@ public class ProfileService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMMM");
         String sinceAt = createdAt.format(formatter);
         userDTO.setSinceAt(sinceAt);
+
+        Seller seller = hibernateSession.createQuery("FROM Seller s WHERE s.user=:user", Seller.class)
+                .setParameter("user", user)
+                .getSingleResultOrNull();
+        userDTO.setIsSeller(seller != null);
 
         responseObject.add("user", AppUtil.GSON.toJsonTree(userDTO));
         hibernateSession.close();

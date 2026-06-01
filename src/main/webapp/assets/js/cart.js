@@ -1,3 +1,6 @@
+(function () {
+const API_ROOT = '/aesthetica';
+
 window.addEventListener("load", async () => {
   try {
     await loadCartItems();
@@ -8,7 +11,7 @@ window.addEventListener("load", async () => {
 
 async function addToCart(productId, productQty) {
   const response = await fetch(
-    "api/user-carts/cart?productId=" + productId + "&qty=" + productQty,
+    API_ROOT + "/api/user-carts/cart?productId=" + productId + "&qty=" + productQty,
     { credentials: "include" },
   );
 
@@ -32,7 +35,7 @@ async function addToCart(productId, productQty) {
 
 async function updateCartQuantity(cartId, delta) {
   const response = await fetch(
-    `api/user-carts/update-qty?cartItemId=${encodeURIComponent(cartId)}&delta=${encodeURIComponent(delta)}`,
+    API_ROOT + `/api/user-carts/update-qty?cartItemId=${encodeURIComponent(cartId)}&delta=${encodeURIComponent(delta)}`,
     { credentials: "include" },
   );
 
@@ -55,9 +58,6 @@ async function updateCartQuantity(cartId, delta) {
 async function buyNow(productId, productQty = 1) {
   const added = await addToCart(productId, productQty);
   if (added) {
-    // Pass product info to checkout so the checkout page can optionally pre-select or highlight
-    // this quick-purchase item. Note: backend still uses cart contents; this query param is
-    // provided for UI convenience.
     window.location = `checkout.html?productId=${productId}&qty=${productQty}`;
   }
 }
@@ -68,7 +68,7 @@ async function loadCartItems() {
     if (cartItemContainer) {
       cartItemContainer.innerHTML = "";
     }
-    const response = await fetch("api/user-carts/load-cart", {
+    const response = await fetch(API_ROOT + "/api/user-carts/load-cart", {
       credentials: "include",
     });
     if (response.ok) {
@@ -92,11 +92,14 @@ async function loadCartItems() {
             return;
           }
 
+          const cartImg = cart.images && cart.images[0]
+            ? (cart.images[0].startsWith('http') || cart.images[0].startsWith('/') ? cart.images[0] : API_ROOT + '/' + cart.images[0])
+            : API_ROOT + '/assets/images/placeholder.webp';
           cartItemContainer.innerHTML += `
                         <div class="card mb-3 border-0 shadow-sm">
                 <div class="row g-0 align-items-center">
                     <div class="col-md-3 p-2">
-                        <img src="${cart.images[0]}"
+                        <img src="${cartImg}"
                              class="img-fluid rounded-start" alt="Product Image"
                              style="height: 80px; width: 80px; object-fit: cover;">
                     </div>
@@ -160,7 +163,6 @@ async function loadCartItems() {
         if (navPriceElement) navPriceElement.innerHTML = "0.00";
 
         if (data.message === "Cart is empty") {
-          // keep cart silently empty without console noise
         } else {
           Notiflix.Notify.failure(data.message, {
             position: "center-top",
@@ -181,10 +183,9 @@ async function loadCartItems() {
 
 async function removeCartItem(cartId) {
   const response = await fetch(
-    `api/user-carts/remove?cartItemId=${encodeURIComponent(cartId)}`,
+    API_ROOT + `/api/user-carts/remove?cartItemId=${encodeURIComponent(cartId)}`,
     { credentials: "include" },
   );
-
 
   if (response.ok) {
     const data = await response.json();
@@ -203,3 +204,11 @@ async function removeCartItem(cartId) {
 async function changeCartQty(cartId, delta) {
   await updateCartQuantity(cartId, delta);
 }
+
+window.addToCart = addToCart;
+window.updateCartQuantity = updateCartQuantity;
+window.buyNow = buyNow;
+window.loadCartItems = loadCartItems;
+window.removeCartItem = removeCartItem;
+window.changeCartQty = changeCartQty;
+})();

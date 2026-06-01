@@ -1,3 +1,6 @@
+(function () {
+const API_ROOT = '/aesthetica';
+
 window.addEventListener("load", async () => {
   try {
     await loadCartPage();
@@ -13,7 +16,7 @@ async function loadCartPage() {
     const summaryShipping = document.getElementById("summary-shipping");
     const summaryTotal = document.getElementById("summary-total");
 
-    const response = await fetch("api/user-carts/load-cart", {
+    const response = await fetch(API_ROOT + "/api/user-carts/load-cart", {
       credentials: "include",
     });
 
@@ -65,8 +68,8 @@ async function loadCartPage() {
           const priceStr = formatPrice(cart.price);
           const lineTotalStr = formatPrice(lineTotal);
           const thumb = Array.isArray(cart.images) && cart.images.length > 0
-            ? cart.images[0]
-            : "assets/images/placeholder.webp";
+            ? (cart.images[0].startsWith('http') || cart.images[0].startsWith('/') ? cart.images[0] : API_ROOT + '/' + cart.images[0])
+            : API_ROOT + "/assets/images/placeholder.webp";
 
           container.innerHTML += `
             <div class="cart-item-card p-3 p-md-4 mb-3">
@@ -110,7 +113,7 @@ async function loadCartPage() {
 
 async function pageRemoveCartItem(cartId) {
   const response = await fetch(
-    `api/user-carts/remove?cartItemId=${encodeURIComponent(cartId)}`,
+    API_ROOT + `/api/user-carts/remove?cartItemId=${encodeURIComponent(cartId)}`,
     { credentials: "include" },
   );
 
@@ -129,7 +132,7 @@ async function pageRemoveCartItem(cartId) {
 
 async function pageChangeCartQty(cartId, delta) {
   const response = await fetch(
-    `api/user-carts/update-qty?cartItemId=${encodeURIComponent(cartId)}&delta=${encodeURIComponent(delta)}`,
+    API_ROOT + `/api/user-carts/update-qty?cartItemId=${encodeURIComponent(cartId)}&delta=${encodeURIComponent(delta)}`,
     { credentials: "include" },
   );
 
@@ -169,3 +172,7 @@ function updateBadges(qty, price) {
   const navPriceEl = document.getElementById("nav-cart-price");
   if (navPriceEl) navPriceEl.textContent = price;
 }
+
+window.pageRemoveCartItem = pageRemoveCartItem;
+window.pageChangeCartQty = pageChangeCartQty;
+})();

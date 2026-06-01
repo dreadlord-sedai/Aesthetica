@@ -181,10 +181,9 @@ function updateProductView(data) {
   let pages = Math.ceil(all_product_count / product_per_page);
 
   if (current_page > 0) {
-    // Changed from !== 0 for safety
     let li = document.createElement("li");
     li.className = "page-item";
-    li.innerHTML = `<a class="page-link" href="#">Previous</a>`;
+    li.innerHTML = `<a class="page-link" href="#"><</a>`;
     li.addEventListener("click", async (e) => {
       e.preventDefault();
       current_page--;
@@ -195,7 +194,6 @@ function updateProductView(data) {
 
   for (let i = 0; i < pages; i++) {
     let li = document.createElement("li");
-    // Add 'active' class if it's the current page
     li.className = i === current_page ? "page-item active" : "page-item";
 
     let a = document.createElement("a");
@@ -217,11 +215,24 @@ function updateProductView(data) {
   if (current_page < pages - 1) {
     let li = document.createElement("li");
     li.className = "page-item";
-    li.innerHTML = `<a class="page-link" href="#">Next</a>`;
+    li.innerHTML = `<a class="page-link" href="#">></a>`;
     li.addEventListener("click", async (e) => {
       e.preventDefault();
       current_page++;
       await searchProduct(current_page * product_per_page);
+    });
+    st_pagination_container.appendChild(li);
+  }
+
+  /* Last page */
+  if (current_page < pages - 1) {
+    let li = document.createElement("li");
+    li.className = "page-item";
+    li.innerHTML = `<a class="page-link" href="#">Last</a>`;
+    li.addEventListener("click", async (e) => {
+      e.preventDefault();
+      current_page = pages - 1;
+      await searchProduct((pages - 1) * product_per_page);
     });
     st_pagination_container.appendChild(li);
   }
@@ -310,4 +321,45 @@ document
 function redirectToSingleProductView(productId) {
   window.location = `single-product-view.html?id=${productId}`;
 }
+
+/* ─── Filter Drawer Toggle ─── */
+(function () {
+  var drawer = document.getElementById("filterDrawer");
+  var overlay = document.getElementById("filterDrawerOverlay");
+  var toggleBtn = document.getElementById("filter-toggle-button");
+  var closeBtn = document.getElementById("filterDrawerClose");
+
+  if (!drawer) return;
+
+  function openDrawer() {
+    drawer.classList.add("open");
+    if (overlay) overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove("open");
+    if (overlay) overlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (drawer.classList.contains("open")) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeDrawer);
+  }
+
+  if (overlay) {
+    overlay.addEventListener("click", closeDrawer);
+  }
+})();
 

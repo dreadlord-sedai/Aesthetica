@@ -1,3 +1,4 @@
+const API_ROOT = '/aesthetica';
 let params = new URLSearchParams(window.location.search);
 window.addEventListener("load",async ()=>{
     const buyNowButton = document.getElementById("buyNowButton");
@@ -19,7 +20,7 @@ window.addEventListener("load",async ()=>{
             }
 
             const response = await fetch(
-                `api/user-carts/cart?productId=${encodeURIComponent(productId)}&qty=${encodeURIComponent(qty)}`,
+                API_ROOT + `/api/user-carts/cart?productId=${encodeURIComponent(productId)}&qty=${encodeURIComponent(qty)}`,
             );
             const data = response.ok ? await response.json() : { status: false, message: "Unable to add to cart" };
             if (data.status) {

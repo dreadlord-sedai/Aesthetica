@@ -30,6 +30,7 @@
         onclick="window.location.href='cart.html'"
         style="cursor: pointer"
       >
+        <i class="fa-solid fa-cart-shopping"></i>
         <span
           class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
           id="shop-icon-badge-mobile"
@@ -48,7 +49,7 @@
 
       <nav class="sidebar-nav">
         <a class="sidebar-link" href="shop.html"><i class="bi bi-shop"></i>Shop</a>
-        <a class="sidebar-link" href="cart.html"><i class="bi bi-cart3"></i>Cart</a>
+        <a class="sidebar-link" href="cart.html"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
         <a class="sidebar-link" href="all_categories.html"><i class="bi bi-grid"></i>All Categories</a>
       </nav>
 
@@ -57,6 +58,7 @@
       <div class="sidebar-utilities">
         <div class="sidebar-cart" onclick="window.location.href='cart.html'" style="cursor: pointer">
           <div class="kart-icon position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
             <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
               id="shop-icon-badge"
@@ -66,19 +68,9 @@
           <span class="price" id="nav-cart-price">00.00</span>
         </div>
 
-        <div class="sidebar-profile-wrap dropdown">
-          <button class="sidebar-profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="profile-icon"></div>
-            <span>Profile</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-start">
-            <li><a class="dropdown-item" href="my_account.html">My Account</a></li>
-            <li><a class="dropdown-item" href="#">Wholesale</a></li>
-            <li><a class="dropdown-item" href="#">Customer Support</a></li>
-            <li><a class="dropdown-item" href="#">B2B</a></li>
-            <li class="px-3"><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item text-danger" onclick="signOut()">Log Out</a></li>
-          </ul>
+        <div id="auth-menu" class="sidebar-auth-stack d-none">
+          <a class="sidebar-link" href="my_account.html"><i class="bi bi-person"></i>Profile</a>
+          <a class="sidebar-link" onclick="signOut()"><i class="bi bi-box-arrow-right"></i>Log Out</a>
         </div>
 
         <div id="guest-auth-menu" class="sidebar-guest-auth d-none">
@@ -370,14 +362,7 @@
             </div>
           </div>
 
-          <button
-            class="btn scroll-to-top-btn"
-            style="background-color: #5e35b1"
-            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-          >
-            <i class="bi bi-arrow-up fw-bolder text-white"></i>
-          </button>
-        </div>
+          </div>
       </div>
     </footer>
     <!--Footer-->

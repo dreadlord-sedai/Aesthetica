@@ -1,5 +1,5 @@
 :root {
-  --sidebar-width: 280px;
+  --sidebar-width: 220px;
 }
 
 /* ─── Sidebar ─── */
@@ -15,6 +15,7 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
   transition: transform 0.3s ease;
 }
 
@@ -121,6 +122,7 @@
 
 .sidebar-brand .brand-logo {
   margin-bottom: 0.25rem;
+  max-width: 100%;
 }
 
 .sidebar-tagline {
@@ -141,12 +143,15 @@
 .sidebar-link {
   display: flex;
   align-items: center;
+  width: 100%;
   padding: 0.7rem 1.25rem;
   color: var(--text-main);
   text-decoration: none;
   font-size: 0.95rem;
   transition: all 0.2s ease;
   border-left: 3px solid transparent;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .sidebar-link i {
@@ -185,15 +190,24 @@
   opacity: 0.6;
 }
 
-/* ─── Sidebar Utilities (cart + profile) ─── */
+/* ─── Sidebar Utilities (cart + auth stack) ─── */
 .sidebar-utilities {
-  padding: 0.75rem 1.25rem;
+  padding: 0;
   border-top: 1px solid var(--border-soft);
+}
+
+.sidebar-utilities .sidebar-cart {
+  padding: 0.5rem 1.25rem;
+}
+
+.sidebar-utilities .sidebar-guest-auth {
+  padding: 0.75rem 1.25rem;
 }
 
 .sidebar-cart {
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 0.75rem;
   padding: 0.5rem 0;
   cursor: pointer;
@@ -214,44 +228,28 @@
 .sidebar-cart .price {
   font-size: 0.95rem;
   color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar-cart-label {
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-right: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.sidebar-profile-wrap {
-  padding: 0.5rem 0;
-}
-
-.sidebar-profile-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
-  color: var(--text-main);
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.2s ease;
-  cursor: pointer;
-  background: none;
-  border: none;
+/* ─── Sidebar Auth Stack (logged-in) ─── */
+.sidebar-auth-stack {
   width: 100%;
-  text-align: left;
-  font-size: 0.95rem;
 }
 
-.sidebar-profile-btn:hover {
-  background: var(--bg-elevated);
-  color: var(--accent-soft);
-}
-
-.sidebar-profile-btn .profile-icon {
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
+.sidebar-auth-stack .sidebar-link {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 /* ─── Sidebar Guest Auth ─── */
@@ -259,7 +257,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0.75rem 0;
 }
 
 .sidebar-guest-auth .btn {

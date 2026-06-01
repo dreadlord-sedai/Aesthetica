@@ -1,43 +1,3 @@
-.imageDiv {
-    height: 200px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-/* Hide the icon by default IF the div has an image */
-.imageDiv.has-image i {
-    display: none;
-}
-
-/* Show the icon (trash) only when hovering over a div that has an image */
-.imageDiv.has-image:hover i {
-    display: block;
-    z-index: 10;
-}
-
-/* Optional: Darken the image slightly on hover to make the red trash icon pop */
-.imageDiv.has-image:hover {
-    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.5);
-}
-
-/* Hide the actual file input from view */
-input[type="file"] {
-    display: none;
-}
-
-
-.bc {
-    background-color: #ededed;
-    height: 35px;
-}
-
-
 .list-group-item.active-nav {
     background-color: #5e35b1;
     color: white;
@@ -47,6 +7,28 @@ input[type="file"] {
 
 .list-group-item:not(.active-nav):hover {
     background-color: #f8f9fa;
+}
+
+#adminPanelBtn {
+    background-color: #7e57c2;
+    color: #fff;
+    border-color: #7e57c2;
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+    border-radius: 8px;
+}
+
+#adminPanelBtn:hover {
+    background-color: #5e35b1;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(94, 53, 177, 0.4);
+}
+
+#adminPanelBtn i {
+    font-size: 1.1rem;
 }
 
 
@@ -150,29 +132,6 @@ input[type="file"] {
 }
 
 /* --- Scroll to Top Button --- */
-.scroll-to-top-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 45px;
-    height: 45px;
-    border-radius: 10%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: none;
-    z-index: 1000;
-}
-
-.ql-toolbar.ql-snow {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-/* Round the bottom corners of the text editor */
-.ql-container.ql-snow {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
 ::selection {
     background-color: rgba(126, 87, 194, 0.35);
     color: #000000;

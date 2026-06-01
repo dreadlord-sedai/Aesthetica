@@ -74,13 +74,16 @@ input::placeholder {
 
 label,
 .form-label,
-.text-muted,
 small,
 span,
 p,
 li,
 a {
     color: inherit;
+}
+
+.text-muted {
+    color: #b39ddb !important;
 }
 
 a,
@@ -189,7 +192,6 @@ h6 {
     color: var(--text-main) !important;
 }
 
-.kart-icon,
 .profile-icon {
     filter: invert(1) brightness(1.1);
 }

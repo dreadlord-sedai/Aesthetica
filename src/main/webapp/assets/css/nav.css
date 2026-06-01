@@ -102,14 +102,18 @@ body {
 }
 
 .kart-icon {
-    background-image: url("../icons/bag.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 30px;
-    /* Adjusted for mobile fit */
     height: 30px;
     cursor: pointer;
+    color: var(--text-main, #dfe4f2);
+}
+
+.kart-icon i {
+    font-size: 1.15rem;
+    line-height: 1;
 }
 
 .profile-icon {
@@ -218,17 +222,4 @@ body {
 
 .payment-icons {
     font-size: 1.5rem;
-}
-
-.scroll-to-top-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 45px;
-    height: 45px;
-    border-radius: 10%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: none;
-    z-index: 1000;
-    background: linear-gradient(135deg, #5e35b1 0%, #9575cd 100%);
 }

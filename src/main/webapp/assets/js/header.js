@@ -1,3 +1,5 @@
+const API_ROOT = '/aesthetica';
+
 async function signOut() {
   Notiflix.Confirm.show(
     "Aesthetica",
@@ -8,7 +10,7 @@ async function signOut() {
     async () => {
       try {
         // Now you can use await here
-        const response = await fetch("api/users/logout", {
+        const response = await fetch(API_ROOT + "/api/users/logout", {
           method: "GET",
           credentials: "include",
         });
@@ -39,7 +41,7 @@ async function signOut() {
 
 async function isLoggedInUser() {
   try {
-    const response = await fetch("api/profiles/user-profile", {
+    const response = await fetch(API_ROOT + "/api/profiles/user-profile", {
       credentials: "include",
     });
     return response.ok && !response.redirected;
@@ -59,18 +61,8 @@ function toggleLogoutControls(isGuest) {
 }
 
 function toggleAuthControls(isGuest) {
-  // Hide profile dropdown for guests
-  document.querySelectorAll(".profile-icon")?.forEach((element) => {
-    const dropdown = element.closest(".dropdown");
-    if (dropdown) {
-      dropdown.classList.toggle("d-none", isGuest);
-    }
-  });
-
-  // Show Sign In/Sign Up links for guests
-  document.querySelectorAll('[id*="guest-auth"]')?.forEach((element) => {
-    element.classList.toggle("d-none", !isGuest);
-  });
+  document.getElementById("auth-menu")?.classList.toggle("d-none", isGuest);
+  document.getElementById("guest-auth-menu")?.classList.toggle("d-none", !isGuest);
 }
 
 toggleLogoutControls(true);

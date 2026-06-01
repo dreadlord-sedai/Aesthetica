@@ -2,6 +2,8 @@ package com.aesthetica.service;
 
 import com.google.gson.JsonObject;
 import com.aesthetica.dto.UserDTO;
+import com.aesthetica.entity.Cart;
+import com.aesthetica.entity.Seller;
 import com.aesthetica.entity.Status;
 import com.aesthetica.entity.User;
 import com.aesthetica.util.AppUtil;
@@ -177,6 +179,7 @@ public class UserService {
                     // Auto-login: set user in session
                     HttpSession httpSession = request.getSession();
                     httpSession.setAttribute("user", u);
+                    httpSession.setAttribute("isSeller", false);
 
                     // Merge any guest session cart into the new user's account
                     try {
@@ -228,6 +231,12 @@ public class UserService {
                 }else  {
                     HttpSession httpSession = request.getSession();
                     httpSession.setAttribute("user", singleUser);
+
+                    Seller sellerRecord = hibernateSession.createQuery("FROM Seller s WHERE s.user=:user", Seller.class)
+                            .setParameter("user", singleUser)
+                            .getSingleResultOrNull();
+                    httpSession.setAttribute("isSeller", sellerRecord != null);
+
                     try {
                         new CartService().mergeSessionCartToLoggedInUser(request);
                     } catch (Exception cartMergeError) {

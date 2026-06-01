@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aesthetica - Admin Dashboard</title>
+    <link href="../assets/icons/favicon.ico" type="image/x-ico" rel="icon" />
+    <link href="../assets/css/nav.css" rel="stylesheet" />
+    <link href="../assets/css/sidebar.css" rel="stylesheet" />
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/css/admin.css" rel="stylesheet" />
+    <link href="../assets/css/dark-theme.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="sidebar-toggle" type="button" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-3"></i>
+      </button>
+      <a class="navbar-brand brand-logo" href="../index.html"></a>
+      <div
+        class="kart-icon position-relative"
+        onclick="window.location.href='../cart.html'"
+        style="cursor: pointer"
+      >
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          id="shop-icon-badge-mobile"
+        ></span>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <button class="sidebar-close" type="button" aria-label="Close">&times;</button>
+
+      <div class="sidebar-brand">
+        <a class="brand-logo" href="../index.html"></a>
+        <span class="sidebar-tagline">Admin Panel</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="sidebar-link" href="../shop.html"><i class="bi bi-shop"></i>Shop</a>
+        <a class="sidebar-link" href="../cart.html"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
+        <a class="sidebar-link" href="../all_categories.html"><i class="bi bi-grid"></i>All Categories</a>
+      </nav>
+
+      <hr class="sidebar-divider" />
+
+      <div class="sidebar-utilities">
+        <div class="sidebar-cart" onclick="window.location.href='../cart.html'" style="cursor: pointer">
+          <div class="kart-icon position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              id="shop-icon-badge"
+            ></span>
+          </div>
+          <span class="sidebar-cart-label">Cart</span>
+          <span class="price" id="nav-cart-price">000.00</span>
+        </div>
+
+        <div id="auth-menu" class="sidebar-auth-stack d-none">
+          <a class="sidebar-link" href="../my_account.html"><i class="bi bi-person"></i>Profile</a>
+          <a class="sidebar-link" onclick="signOut()"><i class="bi bi-box-arrow-right"></i>Log Out</a>
+        </div>
+
+        <div id="guest-auth-menu" class="sidebar-guest-auth d-none">
+          <a href="../sign_in.html" class="btn btn-outline-primary btn-sm">Sign In</a>
+          <a href="../sign_up.html" class="btn btn-primary btn-sm">Sign Up</a>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <small>&copy; 2026 Aesthetica</small>
+      </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+    <div class="container py-5">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+          <h4 class="mb-0">Admin Dashboard</h4>
+          <p class="text-muted mb-0">Manage your store</p>
+        </div>
+        <a href="../my_account.html" class="btn" style="background-color: #5e35b1; color: white">
+          <i class="bi bi-arrow-left me-2"></i>Back to Account
+        </a>
+      </div>
+
+      <!-- Horizontal Tab Navigation -->
+      <div class="admin-tabs mb-4">
+        <a href="#" class="admin-tab" data-target="productListing">
+          <i class="bi bi-list-ul me-2"></i>Product Listing
+        </a>
+        <a href="#" class="admin-tab active" data-target="products">
+          <i class="bi bi-leaf-fill me-2"></i>Add Product
+        </a>
+        <a href="#" class="admin-tab" data-target="categories">
+          <i class="bi bi-tags-fill me-2"></i>Add Category
+        </a>
+        <a href="#" class="admin-tab" data-target="adminOrders">
+          <i class="bi bi-bag-fill me-2"></i>Orders
+        </a>
+      </div>
+
+      <!-- Content Sections -->
+      <div class="content-section" id="products">
+        <div class="card shadow-sm p-4">
+          <h5 class="mb-4">Add New Product</h5>
+          <form>
+            <div class="mb-4 form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="productTitle"
+                placeholder=""
+              />
+              <label for="productTitle" class="form-label">Product Title</label>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6 form-floating">
+                <select id="categorySelect" class="form-select">
+                  <option value="0">Select Category</option>
+                </select>
+                <label for="categorySelect" class="form-label">Category</label>
+              </div>
+              <div class="col-md-6 form-floating">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="unitPrice"
+                  placeholder=""
+                />
+                <label for="unitPrice" class="form-label">Unit price</label>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="editor" class="form-label">Description</label>
+              <div id="editor"><br /><br /><br /><br /><br /><br /></div>
+            </div>
+
+            <div class="row mb-3">
+              <span class="h5">Upload product images</span>
+            </div>
+            <div class="mb-4 row g-3">
+              <div class="mb-3 col-3">
+                <div
+                  class="bg-body-secondary mb-2 imageDiv flex-column"
+                  id="image1div"
+                >
+                  <i class="bi bi-upload fs-4 text-secondary"></i>
+                  <span>primary image</span>
+                </div>
+                <input class="form-control" type="file" id="image1" />
+              </div>
+              <div class="mb-3 col-3">
+                <div
+                  class="bg-body-secondary mb-2 imageDiv flex-column"
+                  id="image2div"
+                >
+                  <i class="bi bi-upload fs-4 text-secondary"></i>
+                  <span>image 2</span>
+                </div>
+                <input class="form-control" type="file" id="image2" />
+              </div>
+              <div class="mb-3 col-3">
+                <div
+                  class="bg-body-secondary mb-2 imageDiv flex-column"
+                  id="image3div"
+                >
+                  <i class="bi bi-upload fs-4 text-secondary"></i>
+                  <span>image 3</span>
+                </div>
+                <input class="form-control" type="file" id="image3" />
+              </div>
+              <div class="mb-3 col-3">
+                <div
+                  class="bg-body-secondary mb-2 imageDiv flex-column"
+                  id="image4div"
+                >
+                  <i class="bi bi-upload fs-4 text-secondary"></i>
+                  <span>image 4</span>
+                </div>
+                <input class="form-control" type="file" id="image4" />
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="btn"
+              onclick="addProduct()"
+              style="background-color: #5e35b1; color: white; font-weight: normal;"
+            >
+              Add Product
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="content-section d-none" id="categories">
+        <div class="card shadow-sm p-4">
+          <h5 class="mb-4">Add New Category</h5>
+          <form>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6 form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="categoryName"
+                  placeholder=""
+                />
+                <label for="categoryName" class="form-label">Category Name</label>
+              </div>
+              <div class="col-md-6">
+                <label for="categoryImage" class="form-label">Category Image</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="categoryImage"
+                  accept="image/*"
+                />
+                <div class="mt-2 d-flex align-items-center gap-3">
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    onclick="triggerCategoryImageUpload()"
+                  >
+                    Upload Image
+                  </button>
+                  <small id="categoryImageFileName" class="text-muted">No file selected</small>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="btn"
+              onclick="addCategory()"
+              style="background-color: #5e35b1; color: white; font-weight: normal;"
+            >
+              Add Category
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="content-section d-none" id="productListing">
+        <div class="card shadow-sm p-4">
+          <h5 class="mb-4">Product Listing</h5>
+          <div
+            id="productListingContainer"
+            class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3"
+          ></div>
+        </div>
+      </div>
+
+      <div class="content-section d-none" id="adminOrders">
+        <div class="card shadow-sm p-4">
+          <h5 class="mb-4">All Orders</h5>
+          <p class="text-muted">Order management content goes here.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container pt-5">
+        <div class="row text-center gx-3 gx-md-5" id="footer-features">
+          <div class="col-6 col-md-3 mb-4">
+            <h6>Fast & Secure Delivery</h6>
+            <p class="text-muted">Tell about your service.</p>
+          </div>
+          <div class="col-6 col-md-3 mb-4">
+            <h6>Money-Back Guarantee</h6>
+            <p class="text-muted">Within 10 days.</p>
+          </div>
+          <div class="col-6 col-md-3 mb-4">
+            <h6>24 Hour Return Policy</h6>
+            <p class="text-muted">No question ask.</p>
+          </div>
+          <div class="col-6 col-md-3 mb-4">
+            <h6>Pro Quality Support</h6>
+            <p class="text-muted">24/7 Live support.</p>
+          </div>
+        </div>
+        <hr class="mb-5" />
+      </div>
+      <div class="footer-bottom py-3">
+        <div
+          class="container d-flex justify-content-between align-items-center flex-wrap"
+        >
+          <p class="mb-0 text-muted">
+            &copy;2026. All rights reserved by Aesthetica.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    </div><!-- /main-content -->
+
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script src="../assets/js/cart.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/notification.js"></script>
+    <script src="../assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+      const quill = new Quill("#editor", { theme: "snow" });
+    </script>
+  </body>
+</html>

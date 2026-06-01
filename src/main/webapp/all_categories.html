@@ -12,6 +12,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
   </head>
   <body>
     <!-- Mobile Header -->
@@ -34,13 +38,17 @@
       <nav class="sidebar-nav">
         <a class="sidebar-link" href="index.html"><i class="bi bi-house"></i>Home</a>
         <a class="sidebar-link" href="shop.html"><i class="bi bi-shop"></i>Shop</a>
-        <a class="sidebar-link" href="cart.html"><i class="bi bi-cart3"></i>Cart</a>
+        <a class="sidebar-link" href="cart.html"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
         <a class="sidebar-link active" href="all_categories.html"><i class="bi bi-grid"></i>All Categories</a>
       </nav>
 
       <hr class="sidebar-divider" />
 
       <div class="sidebar-utilities">
+        <div id="auth-menu" class="sidebar-auth-stack d-none">
+          <a class="sidebar-link" href="my_account.html"><i class="bi bi-person"></i>Profile</a>
+          <a class="sidebar-link" onclick="signOut()"><i class="bi bi-box-arrow-right"></i>Log Out</a>
+        </div>
         <div id="guest-auth-menu" class="sidebar-guest-auth d-none">
           <a href="sign_in.html" class="btn btn-outline-primary btn-sm">Sign In</a>
           <a href="sign_up.html" class="btn btn-primary btn-sm">Sign Up</a>

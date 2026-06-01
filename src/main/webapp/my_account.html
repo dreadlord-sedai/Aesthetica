@@ -8,12 +8,12 @@
     <link href="assets/css/sidebar.css" rel="stylesheet" />
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link
-      href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link href="assets/css/my_account.css" rel="stylesheet" />
     <link href="assets/css/dark-theme.css" rel="stylesheet" />
@@ -30,6 +30,7 @@
         onclick="window.location.href='cart.html'"
         style="cursor: pointer"
       >
+        <i class="fa-solid fa-cart-shopping"></i>
         <span
           class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
           id="shop-icon-badge-mobile"
@@ -48,7 +49,7 @@
 
       <nav class="sidebar-nav">
         <a class="sidebar-link" href="shop.html"><i class="bi bi-shop"></i>Shop</a>
-        <a class="sidebar-link" href="cart.html"><i class="bi bi-cart3"></i>Cart</a>
+        <a class="sidebar-link" href="cart.html"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
         <a class="sidebar-link" href="all_categories.html"><i class="bi bi-grid"></i>All Categories</a>
       </nav>
 
@@ -57,6 +58,7 @@
       <div class="sidebar-utilities">
         <div class="sidebar-cart" onclick="window.location.href='cart.html'" style="cursor: pointer">
           <div class="kart-icon position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
             <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
               id="shop-icon-badge"
@@ -66,19 +68,9 @@
           <span class="price" id="nav-cart-price">000.00</span>
         </div>
 
-        <div class="sidebar-profile-wrap dropdown">
-          <button class="sidebar-profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="profile-icon"></div>
-            <span>Profile</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-start">
-            <li><a class="dropdown-item" href="my_account.html">My Account</a></li>
-            <li><a class="dropdown-item" href="#">Wholesale</a></li>
-            <li><a class="dropdown-item" href="#">Customer Support</a></li>
-            <li><a class="dropdown-item" href="#">B2B</a></li>
-            <li class="px-3"><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item text-danger" onclick="signOut()">Log Out</a></li>
-          </ul>
+        <div id="auth-menu" class="sidebar-auth-stack d-none">
+          <a class="sidebar-link" href="my_account.html"><i class="bi bi-person"></i>Profile</a>
+          <a class="sidebar-link" onclick="signOut()"><i class="bi bi-box-arrow-right"></i>Log Out</a>
         </div>
 
         <div id="guest-auth-menu" class="sidebar-guest-auth d-none">
@@ -120,207 +112,21 @@
             <a
               href="#"
               class="list-group-item menu-link"
-              id="product-anchor"
-              data-target="products"
-            >
-              <i class="bi bi-leaf-fill me-4"></i>
-              Add products
-            </a>
-            <a
-              href="#"
-              class="list-group-item menu-link"
-              id="category-anchor"
-              data-target="categories"
-            >
-              <i class="bi bi-tags-fill me-4"></i>
-              Add Category
-            </a>
-            <a
-              href="#"
-              class="list-group-item menu-link"
-              id="product-listing-anchor"
-              data-target="productListing"
-            >
-              <i class="bi bi-list-ul me-4"></i>
-              Product Listing
-            </a>
-            <a href="#" class="list-group-item menu-link" data-target="Orders">
-              <i class="bi bi-bag-fill me-4"></i>
-              Orders
-            </a>
-            <a
-              href="#"
-              class="list-group-item menu-link"
               id="address-anchor"
               data-target="Addresses"
             >
               <i class="bi bi-house-fill me-4"></i>
               Addresses
             </a>
+            <hr class="my-2 d-none" id="adminDivider" />
+            <a class="list-group-item d-none" id="adminPanelBtn" href="admin/dashboard.html">
+              <i class="bi bi-shield-shaded me-4"></i>
+              Admin Dashboard
+            </a>
             <a class="list-group-item" onclick="signOut()">
               <i class="bi bi-box-arrow-left me-4"></i>
               Logout
             </a>
-          </div>
-        </div>
-
-        <div class="col-md-9 d-none content-section" id="products">
-          <div class="card shadow-sm p-4">
-            <h5 class="mb-4">Add New Product</h5>
-            <form>
-              <div class="mb-4 form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="productTitle"
-                  placeholder=""
-                />
-                <label for="productTitle" class="form-label"
-                  >Product Title</label
-                >
-              </div>
-
-              <div class="row g-3 mb-4">
-                <div class="col-md-6 form-floating">
-                  <select id="categorySelect" class="form-select">
-                    <option value="0">Select Category</option>
-                  </select>
-                  <label for="categorySelect" class="form-label"
-                    >Category</label
-                  >
-                </div>
-                <div class="col-md-6 form-floating">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="unitPrice"
-                    placeholder=""
-                  />
-                  <label for="unitPrice" class="form-label">Unit price</label>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <label for="editor" class="form-label">Description</label>
-                <div id="editor"><br /><br /><br /><br /><br /><br /></div>
-              </div>
-
-              <div class="row mb-3">
-                <span class="h5">Upload product images</span>
-              </div>
-              <div class="mb-4 row g-3">
-                <div class="mb-3 col-3">
-                  <div
-                    class="bg-body-secondary mb-2 imageDiv flex-column"
-                    id="image1div"
-                  >
-                    <i class="bi bi-upload fs-4 text-secondary"></i>
-                    <span>primary image</span>
-                  </div>
-                  <input class="form-control" type="file" id="image1" />
-                </div>
-                <div class="mb-3 col-3">
-                  <div
-                    class="bg-body-secondary mb-2 imageDiv flex-column"
-                    id="image2div"
-                  >
-                    <i class="bi bi-upload fs-4 text-secondary"></i>
-                    <span>image 2</span>
-                  </div>
-                  <input class="form-control" type="file" id="image2" />
-                </div>
-                <div class="mb-3 col-3">
-                  <div
-                    class="bg-body-secondary mb-2 imageDiv flex-column"
-                    id="image3div"
-                  >
-                    <i class="bi bi-upload fs-4 text-secondary"></i>
-                    <span>image 3</span>
-                  </div>
-                  <input class="form-control" type="file" id="image3" />
-                </div>
-                <div class="mb-3 col-3">
-                  <div
-                    class="bg-body-secondary mb-2 imageDiv flex-column"
-                    id="image4div"
-                  >
-                    <i class="bi bi-upload fs-4 text-secondary"></i>
-                    <span>image 4</span>
-                  </div>
-                  <input class="form-control" type="file" id="image4" />
-                </div>
-              </div>
-
-              <button
-                type="button"
-                class="btn"
-                onclick="addProduct()"
-                style="
-                  background-color: #5e35b1;
-                  color: white;
-                  font-weight: normal;
-                "
-              >
-                Add Product
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div class="col-md-9 d-none content-section" id="categories">
-          <div class="card shadow-sm p-4">
-            <h5 class="mb-4">Add New Category</h5>
-            <form>
-              <div class="row g-3 mb-4">
-                <div class="col-md-6 form-floating">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="categoryName"
-                    placeholder=""
-                  />
-                  <label for="categoryName" class="form-label"
-                    >Category Name</label
-                  >
-                </div>
-                <div class="col-md-6">
-                  <label for="categoryImage" class="form-label"
-                    >Category Image</label
-                  >
-                  <input
-                    type="file"
-                    class="form-control"
-                    id="categoryImage"
-                    accept="image/*"
-                  />
-                  <div class="mt-2 d-flex align-items-center gap-3">
-                    <button
-                      type="button"
-                      class="btn btn-outline-dark"
-                      onclick="triggerCategoryImageUpload()"
-                    >
-                      Upload Image
-                    </button>
-                    <small id="categoryImageFileName" class="text-muted"
-                      >No file selected</small
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                class="btn"
-                onclick="addCategory()"
-                style="
-                  background-color: #5e35b1;
-                  color: white;
-                  font-weight: normal;
-                "
-              >
-                Add Category
-              </button>
-            </form>
           </div>
         </div>
 
@@ -463,23 +269,6 @@
           </div>
         </div>
 
-        <div class="col-md-9 d-none content-section" id="productListing">
-          <div class="card shadow-sm p-4">
-            <h5 class="mb-4">Product Listing</h5>
-            <div
-              id="productListingContainer"
-              class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3"
-            ></div>
-          </div>
-        </div>
-
-        <div class="col-md-9 d-none content-section" id="Orders">
-          <div class="card shadow-sm p-4">
-            <h5 class="mb-4">Orders</h5>
-            <p>Order history content goes here.</p>
-          </div>
-        </div>
-
         <div class="col-md-9 d-none content-section" id="Addresses">
           <div class="card shadow-sm p-4">
             <div
@@ -539,13 +328,6 @@
           <p class="mb-0 text-muted">
             ©2026. All rights reserved by Aesthetica.
           </p>
-          <button
-            class="btn scroll-to-top-btn"
-            style="background-color: #5e35b1"
-            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-          >
-            <i class="bi bi-arrow-up fw-bolder text-white"></i>
-          </button>
         </div>
       </div>
     </footer>
@@ -559,9 +341,5 @@
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/notification.js"></script>
     <script src="assets/js/notiflix-aio-3.2.8.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-    <script>
-      const quill = new Quill("#editor", { theme: "snow" });
-    </script>
   </body>
 </html>
