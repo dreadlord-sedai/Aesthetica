@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+      <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+      <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+      <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aesthetica?useSSL=false&amp;allowPublicKeyRetrieval=true</property>
+      <property name="hibernate.connection.username">aesthetica_user</property>
+      <property name="hibernate.connection.password">mysql2006</property>
+      <property name="hibernate.hbm2ddl.auto">update</property>
+      <property name="hibernate.show_sql">true</property>
+      <property name="hibernate.cache.use_second_level_cache">false</property>
+
+      <mapping class="com.aesthetica.entity.User"/>
+      <mapping class="com.aesthetica.entity.Address"/>
+      <mapping class="com.aesthetica.entity.Status"/>
+      <mapping class="com.aesthetica.entity.BaseEntity"/>
+      <mapping class="com.aesthetica.entity.Cart"/>
+      <mapping class="com.aesthetica.entity.City"/>
+      <mapping class="com.aesthetica.entity.Order"/>
+      <mapping class="com.aesthetica.entity.Product"/>
+      <mapping class="com.aesthetica.entity.Seller"/>
+      <mapping class="com.aesthetica.entity.Stock"/>
+      <mapping class="com.aesthetica.entity.DeliveryType"/>
+      <mapping class="com.aesthetica.entity.Discount"/>
+      <mapping class="com.aesthetica.entity.OrderItem"/>
+      <mapping class="com.aesthetica.entity.Category"/>
+
+  </session-factory>
+</hibernate-configuration>

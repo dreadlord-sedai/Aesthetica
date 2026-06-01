@@ -1,0 +1,75 @@
+.bg-artwork {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+
+    padding-top: 100px;
+
+    background: radial-gradient(circle at top, #ede7f6 0%, #d1c4e9 45%, #b39ddb 100%);
+    height: 100%;
+}
+
+.brand-tagline {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    color: #311b92;
+    margin-top: -10px;
+    font-weight: 600;
+}
+
+.brand {
+    width: 100%;
+    background: linear-gradient(135deg, #311b92 0%, #7e57c2 60%, #b39ddb 100%);
+    border-radius: 18px;
+    height: 130px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand::after {
+    content: "AESTHETICA";
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.sign-in-button {
+    background-color: #5e35b1;
+    color: white;
+}
+
+
+
+/*   Password hide|show toggle   */
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+    color: #6c757d;
+}
+
+.form-floating input {
+    padding-right: 40px;
+}
+
+/*   Password hide|show toggle end   */
+
+::selection {
+    background-color: rgba(126, 87, 194, 0.35);
+    color: #000000;
+    /* Changes text to white for better contrast */
+}
+
+/* Fallback for Firefox */
+::-moz-selection {
+    background-color: #7e57c2;
+    color: #ffffff;
+}

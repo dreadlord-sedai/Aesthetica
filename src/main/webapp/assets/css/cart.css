@@ -1,0 +1,11 @@
+::selection {
+    background-color: rgba(126, 87, 194, 0.35);
+    color: #000000;
+    /* Changes text to white for better contrast */
+}
+
+/* Fallback for Firefox */
+::-moz-selection {
+    background-color: #7e57c2;
+    color: #ffffff;
+}

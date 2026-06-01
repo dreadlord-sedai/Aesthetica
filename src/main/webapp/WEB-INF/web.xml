@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <filter>
+        <filter-name>AuthAccessFilter</filter-name>
+        <filter-class>com.aesthetica.middleware.AuthAccessFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthAccessFilter</filter-name>
+        <url-pattern>/sign_up.html</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthAccessFilter</filter-name>
+        <url-pattern>/sign_in.html</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>AccessControlFilter</filter-name>
+        <filter-class>com.aesthetica.middleware.AccessControlFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccessControlFilter</filter-name>
+        <url-pattern>/my_account.html</url-pattern>
+    </filter-mapping>
+    <!-- NOTE: Checkout should be accessible to guest users. Removed the strict AccessControlFilter mapping for /checkout.html -->
+</web-app>

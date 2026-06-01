@@ -1,0 +1,234 @@
+body {
+    font-family: 'Rubik', sans-serif;
+}
+
+.nav-shell {
+    background: rgba(14, 18, 28, 0.94) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.nav-tagline {
+    color: #a8b1c7;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.nav-links-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 0.3rem 0.4rem;
+}
+
+.nav-links-pill .nlink {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.96rem;
+}
+
+.nav-links-pill .nlink:hover {
+    background: rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+}
+
+.nav-utilities {
+    margin-left: auto;
+}
+
+.nav-cart-block {
+    padding-right: 0.2rem;
+}
+
+.brand-logo {
+    width: 120px;
+    height: 40px;
+    display: block;
+    position: relative;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1a2550 0%, #2e3d67 55%, #3f517f 100%);
+}
+
+.brand-logo::after {
+    content: "Aesthetica";
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Make logo bigger on desktop */
+@media (min-width: 992px) {
+    .brand-logo {
+        width: 210px;
+        height: 52px;
+    }
+
+    .brand-logo::after {
+        font-size: 1.2rem;
+    }
+}
+
+.nlink {
+    font-size: 16px;
+    color: #dfe4f2;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nlink:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.price {
+    font-weight: 500;
+    font-size: 14px;
+    /* Slightly smaller font for mobile price */
+    white-space: nowrap;
+    color: #dfe4f2;
+}
+
+.kart-icon {
+    background-image: url("../icons/bag.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 30px;
+    /* Adjusted for mobile fit */
+    height: 30px;
+    cursor: pointer;
+}
+
+.profile-icon {
+    background-image: url("../icons/person-fill.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 37px;
+    /* Adjusted for mobile fit */
+    height: 36px;
+    cursor: pointer;
+}
+
+@media (max-width: 991.98px) {
+    .nav-links-wrap {
+        justify-content: flex-start;
+    }
+
+    .nav-links-pill {
+        border-radius: 16px;
+        width: 100%;
+        padding: 0.45rem;
+    }
+
+    .nav-links-pill .nlink {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .nav-utilities {
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+}
+
+/*Footer*/
+/* --- Global Reset and Footer Background --- */
+.site-footer {
+    background-color: #f8f8f8;
+    /* Light gray background */
+    color: #333;
+    /* Default text color */
+    font-family: Arial, sans-serif;
+    /* Use a common readable font */
+}
+
+.footer-bottom {
+    border-top: 1px solid #e0e0e0;
+}
+
+/* --- Feature Icons Section --- */
+#footer-features p {
+    font-size: 0.85rem;
+    color: #6c757d !important;
+    /* Muted color for descriptions */
+}
+
+/* Note: You must replace 'path/to/iconX.png' with actual images/SVGs and size them. */
+.footer-icon {
+    width: 40px;
+    height: 40px;
+}
+
+/* --- Main Links Section --- */
+.footer-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #6c757d;
+    /* Muted color for links */
+    text-decoration: none;
+    /* Remove underline */
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: #7e57c2;
+}
+
+/* --- Download App Badges --- */
+.app-badge-img {
+    width: 150px;
+    /* Adjust size as needed */
+    height: auto;
+}
+
+/* --- Footer Bottom Styling (Socials & Payments) --- */
+.social-icons a {
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin-right: 0.8rem;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover {
+    color: #000;
+}
+
+.payment-icons {
+    font-size: 1.5rem;
+}
+
+.scroll-to-top-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 10%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    z-index: 1000;
+    background: linear-gradient(135deg, #5e35b1 0%, #9575cd 100%);
+}
