@@ -36,4 +36,5 @@ build/
 .vscode/
 
 ### Mac OS ###
-.DS_Store
+.DS_Storesrc/main/webapp/assets/fonts/Merriweather,Roboto,Rubik.zip
+src/main/webapp/assets/fonts/*.zip
