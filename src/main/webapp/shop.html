@@ -5,6 +5,7 @@
     <title>Aesthetica Shop</title>
     <link href="assets/icons/favicon.ico" type="image/x-ico" rel="icon" />
     <link href="assets/css/nav.css" rel="stylesheet" />
+    <link href="assets/css/sidebar.css" rel="stylesheet" />
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/nouislider.min.css" rel="stylesheet" />
     <link
@@ -15,337 +16,302 @@
     <link href="assets/css/dark-theme.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <!--NAVBAR-->
-        <nav
-          class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top shadow"
-        >
-          <div class="container-fluid px-2 px-md-5">
-            <a class="navbar-brand brand-logo" href="index.html"></a>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="sidebar-toggle" type="button" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-3"></i>
+      </button>
+      <a class="navbar-brand brand-logo" href="index.html"></a>
+      <div
+        class="kart-icon position-relative"
+        data-bs-toggle="offcanvas"
+        href="#cart"
+        role="button"
+        aria-controls="cart"
+        style="cursor: pointer"
+      >
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          id="shop-icon-badge-mobile"
+        ></span>
+      </div>
+    </div>
 
-            <div class="d-flex align-items-center order-lg-last">
-              <div class="d-flex align-items-center flex-column me-2 me-md-4">
-                <div
-                  class="kart-icon position-relative"
-                  data-bs-toggle="offcanvas"
-                  href="#cart"
-                  role="button"
-                  aria-controls="cart"
-                  style="cursor: pointer"
-                >
-                  <span
-                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="shop-icon-badge"
-                  ></span>
-                </div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <button class="sidebar-close" type="button" aria-label="Close">&times;</button>
 
-                <div class="price me-2" id="nav-cart-price">00.00</div>
-              </div>
+      <div class="sidebar-brand">
+        <a class="brand-logo" href="index.html"></a>
+        <span class="sidebar-tagline">Curated visuals</span>
+      </div>
 
-              <div class="dropdown">
-                <div
-                  class="profile-icon me-3 me-lg-0"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                ></div>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <a class="dropdown-item" href="my_account.html"
-                      >My Account</a
-                    >
-                  </li>
-                  <li><a class="dropdown-item" href="#">Wholesale</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Customer Support</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="contact.html">Contact Us</a>
-                  </li>
-                  <li><a class="dropdown-item" href="#">B2B</a></li>
-                  <li class="px-3">
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      style="color: #ff3c3c"
-                      onclick="signOut()"
-                      >Log Out</a
-                    >
-                  </li>
-                </ul>
-              </div>
+      <nav class="sidebar-nav">
+        <a class="sidebar-link active" href="shop.html"><i class="bi bi-shop"></i>Shop</a>
+        <a class="sidebar-link" href="all_categories.html"><i class="bi bi-grid"></i>All Categories</a>
+      </nav>
 
-              <div id="guest-auth-menu" class="d-none">
-                <a href="sign_in.html" class="btn btn-sm btn-outline-primary me-2">Sign In</a>
-                <a href="sign_up.html" class="btn btn-sm btn-primary">Sign Up</a>
-              </div>
-            </div>
+      <hr class="sidebar-divider" />
 
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarContent"
-              aria-controls="navbarContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarContent">
-              <ul
-                class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3 align-items-center mt-3 mt-lg-0"
-              >
-                <li class="nav-item"><a class="nlink" href="#">About</a></li>
-                <li class="nav-item">
-                  <a class="nlink" href="shop.html">Shop</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nlink" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nlink text-center" href="all_categories.html"
-                    >All Categories</a
-                  >
-                </li>
-              </ul>
-            </div>
+      <div class="sidebar-utilities">
+        <div class="sidebar-cart" data-bs-toggle="offcanvas" href="#cart" role="button" aria-controls="cart">
+          <div class="kart-icon position-relative">
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              id="shop-icon-badge"
+            ></span>
           </div>
-        </nav>
-        <!--NAVBAR-->
+          <span class="sidebar-cart-label">Cart</span>
+          <span class="price" id="nav-cart-price">00.00</span>
+        </div>
 
-        <div class="container py-5">
-          <div class="row g-3 px-5">
-            <aside class="col-12 col-lg-3">
-              <div
-                class="accordion border border-secondary-subtle rounded-3 shadow-sm sticky-lg-top"
-                style="top: 100px; z-index: 10"
-              >
-                <div class="accordion-item">
-                  <h4 class="accordion-header">
-                    <button
-                      class="accordion-button rounded-top-0 fs-5 fw-semibold"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#categories"
-                    >
-                      Categories
-                    </button>
-                  </h4>
-                  <div id="categories" class="accordion-collapse collapse show">
-                    <div class="accordion-body">
-                      <ul
-                        class="list-unstyled d-grid gap-2 fs-6"
-                        id="categoryListBody"
-                      >
-                        <li class="d-flex gap-2 align-items-center">
-                          <input
-                            type="checkbox"
-                            id="cat1"
-                            class="form-check-input"
-                          />
-                          <label for="cat1" class="form-check-label"
-                            >Minimal Wallpapers</label
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+        <div class="sidebar-profile-wrap dropdown">
+          <button class="sidebar-profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="profile-icon"></div>
+            <span>Profile</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-start">
+            <li><a class="dropdown-item" href="my_account.html">My Account</a></li>
+            <li><a class="dropdown-item" href="#">Wholesale</a></li>
+            <li><a class="dropdown-item" href="#">Customer Support</a></li>
+            <li><a class="dropdown-item" href="#">B2B</a></li>
+            <li class="px-3"><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item text-danger" onclick="signOut()">Log Out</a></li>
+          </ul>
+        </div>
 
-                <div class="accordion-item">
-                  <h4 class="accordion-header">
-                    <button
-                      class="accordion-button fs-5 fw-semibold collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#availability"
-                    >
-                      Availability
-                    </button>
-                  </h4>
-                  <div id="availability" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                      <ul
-                        class="list-unstyled d-grid gap-2 fs-6"
-                        id="availabilityBody"
-                      >
-                        <li class="d-flex gap-2 align-items-center">
-                          <input
-                            type="radio"
-                            checked
-                            name="availability"
-                            id="all-of-stock"
-                            class="form-check-input"
-                          />
-                          <label for="all-of-stock" class="form-check-label"
-                            >All</label
-                          >
-                        </li>
-                        <li class="d-flex gap-2 align-items-center">
-                          <input
-                            type="radio"
-                            name="availability"
-                            id="in-stock"
-                            class="form-check-input"
-                          />
-                          <label for="in-stock" class="form-check-label"
-                            >In stock</label
-                          >
-                        </li>
-                        <li class="d-flex gap-2 align-items-center">
-                          <input
-                            type="radio"
-                            name="availability"
-                            id="out-of-stock"
-                            class="form-check-input"
-                          />
-                          <label for="out-of-stock" class="form-check-label"
-                            >Out of stock</label
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+        <div id="guest-auth-menu" class="sidebar-guest-auth d-none">
+          <a href="sign_in.html" class="btn btn-outline-primary btn-sm">Sign In</a>
+          <a href="sign_up.html" class="btn btn-primary btn-sm">Sign Up</a>
+        </div>
+      </div>
 
-                <div class="accordion-item">
-                  <h4 class="accordion-header">
-                    <button
-                      class="accordion-button fs-5 fw-semibold collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#price"
-                    >
-                      Price Range
-                    </button>
-                  </h4>
-                  <div id="price" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                      <div class="d-flex gap-2 mb-3">
-                        <div class="form-floating flex-fill">
-                          <input
-                            class="form-control"
-                            type="number"
-                            id="min-price"
-                            placeholder="0"
-                          />
-                          <label for="min-price">Min</label>
-                        </div>
-                        <div class="form-floating flex-fill">
-                          <input
-                            class="form-control"
-                            type="number"
-                            id="max-price"
-                            placeholder="0"
-                          />
-                          <label for="max-price">Max</label>
-                        </div>
-                      </div>
-                      <div id="slider" class="mt-4 mx-2"></div>
-                    </div>
-                  </div>
-                </div>
+      <div class="sidebar-footer">
+        <small>&copy; 2026 Aesthetica</small>
+      </div>
+    </div>
 
-                <div class="accordion-item">
-                  <h4 class="accordion-header">
-                    <button
-                      class="accordion-button fs-5 fw-semibold collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#flavour"
-                    >
-                      Style Mood
-                    </button>
-                  </h4>
-                  <div id="flavour" class="accordion-collapse collapse">
-                    <div class="accordion-body text-muted small text-center">
-                      Filter by visual moods and palettes coming soon.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-            <main class="col-12 col-lg-9">
-              <div
-                class="p-4 border border-secondary-subtle rounded-3 bg-white shadow-sm"
-              >
-                <div
-                  class="d-flex justify-content-between align-items-center mb-4 p-3 border rounded shadow-sm bg-white"
+    <!-- Main Content -->
+    <div class="main-content">
+
+      <div class="container py-4 py-lg-5">
+        <div class="row g-4 g-lg-5">
+
+          <!-- Filters -->
+          <aside class="col-12 col-lg-3">
+            <div class="accordion rounded-3 shadow-sm sticky-lg-top" style="top: 100px; z-index: 10">
+            <div class="accordion-item">
+              <h4 class="accordion-header">
+                <button
+                  class="accordion-button fs-6 fw-semibold"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#categories"
                 >
-                  <p class="mb-0 text-muted fw-medium" id="result-count">
-                    Showing 13 results
-                  </p>
-
-                  <div class="d-flex">
-                    <input
-                      type="text"
-                      class="form-control rounded-start-5 shadow-sm"
-                      id="search-input"
-                    />
-                    <button
-                      class="btn px-4 text-nowrap rounded-start-0 rounded-end-5 shadow-sm"
-                      id="search-button"
-                      style="background-color: #4527a0; color: white"
-                    >
-                      Search
-                    </button>
-                  </div>
-
-                  <div class="d-flex gap-2 align-items-center">
-                    <button
-                      class="btn px-4 text-nowrap"
-                      id="apply-filters-button"
-                      style="background-color: #5e35b1; color: white"
-                    >
-                      Apply Filters
-                    </button>
-                    <select
-                      class="form-select"
-                      id="st-sort"
-                      style="min-width: 180px"
-                    >
-                      <option value="latest" selected>Sort from Latest</option>
-                      <option value="oldest">Sort from Oldest</option>
-                      <option value="alpha-desc">
-                        Sort by Name Descending
-                      </option>
-                      <option value="alpha-asc">Sort by Name Ascending</option>
-                      <option value="price-desc">
-                        Sort by Price : High to Low
-                      </option>
-                      <option value="price-asc">
-                        Sort by Price : Low to High
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div
-                  class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 product-container"
-                  id="product-container"
-                ></div>
-                <nav
-                  aria-label="Store pagination"
-                  class="d-flex justify-content-center mt-5"
-                >
-                  <ul class="pagination shadow-sm" id="store-pagination">
-                    <li class="page-item">
-                      <a href="#" class="page-link" id="pagination-button-prev"
-                        >Previous</a
+                  Categories
+                </button>
+              </h4>
+              <div id="categories" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                  <ul
+                    class="list-unstyled d-grid gap-2"
+                    id="categoryListBody"
+                  >
+                    <li class="d-flex gap-2 align-items-center">
+                      <input
+                        type="checkbox"
+                        id="cat1"
+                        class="form-check-input"
+                      />
+                      <label for="cat1" class="form-check-label small"
+                        >Minimal Wallpapers</label
                       >
-                    </li>
-                    <li class="page-item active">
-                      <a class="page-link" href="#" id="pagination-button">1</a>
                     </li>
                   </ul>
-                </nav>
+                </div>
               </div>
-            </main>
+            </div>
+
+            <div class="accordion-item">
+              <h4 class="accordion-header">
+                <button
+                  class="accordion-button fs-6 fw-semibold collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#availability"
+                >
+                  Availability
+                </button>
+              </h4>
+              <div id="availability" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  <ul class="list-unstyled d-grid gap-2" id="availabilityBody">
+                    <li class="d-flex gap-2 align-items-center">
+                      <input
+                        type="radio"
+                        checked
+                        name="availability"
+                        id="all-of-stock"
+                        class="form-check-input"
+                      />
+                      <label for="all-of-stock" class="form-check-label small"
+                        >All</label
+                      >
+                    </li>
+                    <li class="d-flex gap-2 align-items-center">
+                      <input
+                        type="radio"
+                        name="availability"
+                        id="in-stock"
+                        class="form-check-input"
+                      />
+                      <label for="in-stock" class="form-check-label small"
+                        >In stock</label
+                      >
+                    </li>
+                    <li class="d-flex gap-2 align-items-center">
+                      <input
+                        type="radio"
+                        name="availability"
+                        id="out-of-stock"
+                        class="form-check-input"
+                      />
+                      <label for="out-of-stock" class="form-check-label small"
+                        >Out of stock</label
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h4 class="accordion-header">
+                <button
+                  class="accordion-button fs-6 fw-semibold collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#price"
+                >
+                  Price Range
+                </button>
+              </h4>
+              <div id="price" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  <div class="d-flex gap-2 mb-3">
+                    <div class="form-floating flex-fill">
+                      <input
+                        class="form-control"
+                        type="number"
+                        id="min-price"
+                        placeholder="0"
+                      />
+                      <label for="min-price">Min</label>
+                    </div>
+                    <div class="form-floating flex-fill">
+                      <input
+                        class="form-control"
+                        type="number"
+                        id="max-price"
+                        placeholder="0"
+                      />
+                      <label for="max-price">Max</label>
+                    </div>
+                  </div>
+                  <div id="slider" class="mt-4 mx-2"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h4 class="accordion-header">
+                <button
+                  class="accordion-button fs-6 fw-semibold collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flavour"
+                >
+                  Style Mood
+                </button>
+              </h4>
+              <div id="flavour" class="accordion-collapse collapse">
+                <div class="accordion-body text-muted small text-center">
+                  Filter by visual moods and palettes coming soon.
+                </div>
+              </div>
+            </div>
           </div>
+        </aside>
+
+        <!-- Products -->
+        <main class="col-12 col-lg-9">
+          <div class="d-flex flex-column gap-4">
+            <!-- Toolbar -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 p-3 rounded-3 shadow-sm">
+              <p class="mb-0 text-muted small fw-medium" id="result-count">
+                Showing 13 results
+              </p>
+
+              <div class="d-flex gap-2 align-items-center flex-wrap">
+                <div class="d-flex">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm rounded-start-5"
+                    id="search-input"
+                    style="max-width: 200px;"
+                  />
+                  <button
+                    class="btn btn-sm px-3 rounded-start-0 rounded-end-5"
+                    id="search-button"
+                    style="background-color: #4527a0; color: white"
+                  >
+                    Search
+                  </button>
+                </div>
+
+                <button
+                  class="btn btn-sm px-3 text-nowrap"
+                  id="apply-filters-button"
+                  style="background-color: #5e35b1; color: white"
+                >
+                  Apply Filters
+                </button>
+
+                <select class="form-select form-select-sm" id="st-sort" style="min-width: 160px;">
+                  <option value="latest" selected>Sort from Latest</option>
+                  <option value="oldest">Sort from Oldest</option>
+                  <option value="alpha-desc">Sort by Name Descending</option>
+                  <option value="alpha-asc">Sort by Name Ascending</option>
+                  <option value="price-desc">Sort by Price : High to Low</option>
+                  <option value="price-asc">Sort by Price : Low to High</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="rounded-3 shadow-sm p-3 p-md-4">
+              <div
+                class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 product-container"
+                id="product-container"
+              ></div>
+              <nav
+                aria-label="Store pagination"
+                class="d-flex justify-content-center mt-4 pt-2"
+              >
+                <ul class="pagination pagination-sm shadow-sm" id="store-pagination">
+                  <li class="page-item">
+                    <a href="#" class="page-link" id="pagination-button-prev">Previous</a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#" id="pagination-button">1</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            </div>
+          </main>
         </div>
       </div>
 
@@ -431,8 +397,10 @@
         </div>
       </div>
       <!--Off Canvasser-->
-    </div>
+    </div><!-- /main-content -->
+
     <script src="assets/js/nouislider.js"></script>
+    <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/header.js"></script>
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/notiflix-aio-3.2.8.min.js"></script>

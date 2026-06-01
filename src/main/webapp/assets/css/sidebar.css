@@ -1,0 +1,285 @@
+:root {
+  --sidebar-width: 280px;
+}
+
+/* ─── Sidebar ─── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-soft);
+  z-index: 1040;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+  }
+}
+
+/* ─── Mobile Header (visible only < 992px) ─── */
+.mobile-header {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 0.5rem 1rem;
+  }
+
+  .mobile-header .brand-logo {
+    width: 120px;
+    height: 40px;
+  }
+
+  .sidebar-toggle {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+  }
+}
+
+/* ─── Overlay (mobile only) ─── */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1039;
+  display: none;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .sidebar-overlay {
+    display: none !important;
+  }
+}
+
+/* ─── Sidebar Close Button (mobile only) ─── */
+.sidebar-close {
+  display: none;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.75rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar-close {
+    display: block;
+  }
+}
+
+/* ─── Sidebar Brand ─── */
+.sidebar-brand {
+  padding: 1.5rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.sidebar-brand .brand-logo {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-tagline {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+/* ─── Sidebar Navigation ─── */
+.sidebar-nav {
+  padding: 0.75rem 0;
+  flex: 1 0 auto;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1.25rem;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-link i {
+  margin-right: 0.75rem;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  width: 1.25rem;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background: var(--bg-elevated);
+  color: var(--accent-soft);
+  border-left-color: var(--accent);
+}
+
+.sidebar-link:hover i {
+  color: var(--accent-soft);
+}
+
+.sidebar-link.active {
+  background: var(--bg-elevated);
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+
+.sidebar-link.active i {
+  color: var(--accent);
+}
+
+/* ─── Sidebar Divider ─── */
+.sidebar-divider {
+  margin: 0.5rem 1.25rem;
+  border-color: var(--border-soft);
+  opacity: 0.6;
+}
+
+/* ─── Sidebar Utilities (cart + profile) ─── */
+.sidebar-utilities {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+.sidebar-cart {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.sidebar-cart:hover {
+  background: var(--bg-elevated);
+}
+
+.sidebar-cart .kart-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.sidebar-cart .price {
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.sidebar-cart-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-right: auto;
+}
+
+.sidebar-profile-wrap {
+  padding: 0.5rem 0;
+}
+
+.sidebar-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  color: var(--text-main);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.sidebar-profile-btn:hover {
+  background: var(--bg-elevated);
+  color: var(--accent-soft);
+}
+
+.sidebar-profile-btn .profile-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+/* ─── Sidebar Guest Auth ─── */
+.sidebar-guest-auth {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+}
+
+.sidebar-guest-auth .btn {
+  border-radius: 999px;
+  font-size: 0.85rem;
+  padding: 0.45rem 1rem;
+}
+
+/* ─── Sidebar Footer ─── */
+.sidebar-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* ─── Responsive adjustments for existing pages ─── */
+@media (min-width: 992px) {
+  .navbar.sticky-top {
+    display: none;
+  }
+}

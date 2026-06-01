@@ -5,6 +5,7 @@
     <title>Aesthetica - My Account</title>
     <link href="assets/icons/favicon.ico" type="image/x-ico" rel="icon" />
     <link href="assets/css/nav.css" rel="stylesheet" />
+    <link href="assets/css/sidebar.css" rel="stylesheet" />
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link
       href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
@@ -18,120 +19,85 @@
     <link href="assets/css/dark-theme.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <nav
-          class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top shadow"
-        >
-          <div class="container-fluid px-2 px-md-5">
-            <a class="navbar-brand brand-logo" href="index.html"></a>
-
-            <div class="d-flex align-items-center order-lg-last">
-              <div class="d-flex align-items-center flex-column me-2 me-md-4">
-                <div
-                  class="kart-icon position-relative"
-                  data-bs-toggle="offcanvas"
-                  href="#cart"
-                  role="button"
-                  aria-controls="cart"
-                  style="cursor: pointer"
-                >
-                  <span
-                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    id="shop-icon-badge"
-                  ></span>
-                </div>
-
-                <div class="price me-2" id="nav-cart-price">000.00</div>
-              </div>
-
-              <div class="dropdown">
-                <div
-                  class="profile-icon me-3 me-lg-0"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                ></div>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <a class="dropdown-item" href="my_account.html"
-                      >My Account</a
-                    >
-                  </li>
-                  <li><a class="dropdown-item" href="#">Wholesale</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Customer Support</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="contact.html">Contact Us</a>
-                  </li>
-                  <li><a class="dropdown-item" href="#">B2B</a></li>
-                  <li class="px-3"><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      style="color: #ff3c3c"
-                      onclick="signOut()"
-                      >Log Out</a
-                    >
-                  </li>
-                </ul>
-              </div>
-
-              <div id="guest-auth-menu" class="d-none">
-                <a href="sign_in.html" class="btn btn-sm btn-outline-primary me-2">Sign In</a>
-                <a href="sign_up.html" class="btn btn-sm btn-primary">Sign Up</a>
-              </div>
-            </div>
-
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarContent"
-              aria-controls="navbarContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarContent">
-              <ul
-                class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3 align-items-center mt-3 mt-lg-0"
-              >
-                <li class="nav-item"><a class="nlink" href="#">About</a></li>
-                <li class="nav-item">
-                  <a class="nlink" href="shop.html">Shop</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nlink" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nlink text-center" href="all_categories.html"
-                    >All Categories</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <div class="col-md-12 d-flex justify-content-between px-5 bc">
-          <div class="col-1 d-none d-lg-block"></div>
-          <div
-            class="col-10 bc d-flex justify-content-start align-items-center px-4"
-          >
-            <a href="index.html" class="link-dark text-decoration-none me-3"
-              >Home</a
-            >
-            <a href="#" class="link-dark text-decoration-none me-3 active"
-              >My Account</a
-            >
-          </div>
-          <div class="col-1 d-none d-lg-block"></div>
-        </div>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="sidebar-toggle" type="button" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-3"></i>
+      </button>
+      <a class="navbar-brand brand-logo" href="index.html"></a>
+      <div
+        class="kart-icon position-relative"
+        data-bs-toggle="offcanvas"
+        href="#cart"
+        role="button"
+        aria-controls="cart"
+        style="cursor: pointer"
+      >
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          id="shop-icon-badge-mobile"
+        ></span>
       </div>
     </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <button class="sidebar-close" type="button" aria-label="Close">&times;</button>
+
+      <div class="sidebar-brand">
+        <a class="brand-logo" href="index.html"></a>
+        <span class="sidebar-tagline">Curated visuals</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="sidebar-link" href="shop.html"><i class="bi bi-shop"></i>Shop</a>
+        <a class="sidebar-link" href="all_categories.html"><i class="bi bi-grid"></i>All Categories</a>
+      </nav>
+
+      <hr class="sidebar-divider" />
+
+      <div class="sidebar-utilities">
+        <div class="sidebar-cart" data-bs-toggle="offcanvas" href="#cart" role="button" aria-controls="cart">
+          <div class="kart-icon position-relative">
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              id="shop-icon-badge"
+            ></span>
+          </div>
+          <span class="sidebar-cart-label">Cart</span>
+          <span class="price" id="nav-cart-price">000.00</span>
+        </div>
+
+        <div class="sidebar-profile-wrap dropdown">
+          <button class="sidebar-profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="profile-icon"></div>
+            <span>Profile</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-start">
+            <li><a class="dropdown-item" href="my_account.html">My Account</a></li>
+            <li><a class="dropdown-item" href="#">Wholesale</a></li>
+            <li><a class="dropdown-item" href="#">Customer Support</a></li>
+            <li><a class="dropdown-item" href="#">B2B</a></li>
+            <li class="px-3"><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item text-danger" onclick="signOut()">Log Out</a></li>
+          </ul>
+        </div>
+
+        <div id="guest-auth-menu" class="sidebar-guest-auth d-none">
+          <a href="sign_in.html" class="btn btn-outline-primary btn-sm">Sign In</a>
+          <a href="sign_up.html" class="btn btn-primary btn-sm">Sign Up</a>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <small>&copy; 2026 Aesthetica</small>
+      </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
 
     <div class="container py-5">
       <div class="user-greeting d-flex align-items-center mb-4">
@@ -626,6 +592,9 @@
       </div>
     </footer>
 
+    </div><!-- /main-content -->
+
+    <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/my_account.js"></script>
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/header.js"></script>

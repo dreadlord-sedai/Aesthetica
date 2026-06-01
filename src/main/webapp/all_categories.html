@@ -6,6 +6,7 @@
     <link href="assets/icons/favicon.ico" type="image/x-ico" rel="icon" />
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/nav.css" rel="stylesheet" />
+    <link href="assets/css/sidebar.css" rel="stylesheet" />
     <link href="assets/css/dark-theme.css" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -13,50 +14,47 @@
     />
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <nav
-          class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top shadow"
-        >
-          <div class="container-fluid px-2 px-md-5">
-            <a class="navbar-brand brand-logo" href="index.html"></a>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="sidebar-toggle" type="button" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-3"></i>
+      </button>
+      <a class="navbar-brand brand-logo" href="index.html"></a>
+    </div>
 
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarContent"
-              aria-controls="navbarContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <button class="sidebar-close" type="button" aria-label="Close">&times;</button>
 
-            <div class="collapse navbar-collapse" id="navbarContent">
-              <ul
-                class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3 align-items-center mt-3 mt-lg-0"
-              >
-                <li class="nav-item">
-                  <a class="nlink" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nlink" href="shop.html">Shop</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nlink" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nlink text-center" href="all_categories.html"
-                    >All Categories</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+      <div class="sidebar-brand">
+        <a class="brand-logo" href="index.html"></a>
+        <span class="sidebar-tagline">Curated visuals</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="sidebar-link" href="index.html"><i class="bi bi-house"></i>Home</a>
+        <a class="sidebar-link" href="shop.html"><i class="bi bi-shop"></i>Shop</a>
+        <a class="sidebar-link active" href="all_categories.html"><i class="bi bi-grid"></i>All Categories</a>
+      </nav>
+
+      <hr class="sidebar-divider" />
+
+      <div class="sidebar-utilities">
+        <div id="guest-auth-menu" class="sidebar-guest-auth d-none">
+          <a href="sign_in.html" class="btn btn-outline-primary btn-sm">Sign In</a>
+          <a href="sign_up.html" class="btn btn-primary btn-sm">Sign Up</a>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <small>&copy; 2026 Aesthetica</small>
       </div>
     </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
 
     <div class="container py-5">
       <div class="text-center mb-4">
@@ -70,8 +68,11 @@
       ></div>
     </div>
 
+    </div><!-- /main-content -->
+
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/notiflix-aio-3.2.8.min.js"></script>
+    <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/all_categories.js"></script>
   </body>
 </html>
